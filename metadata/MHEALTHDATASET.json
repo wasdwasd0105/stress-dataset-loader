@@ -1,0 +1,15 @@
+{
+  "name": "MHEALTHDATASET",
+  "website": "https://archive.ics.uci.edu/dataset/319/mhealth+dataset",
+  "loader":"MHealthLoader",
+  "format": "log",
+  "record_count": 10,
+  "type": "MHealth",
+  "entry_point": "./",
+  "example_case": "mHealth_subject10.log",
+  "structure": {
+    "sensor_features": ["chest_acc_x", "chest_acc_y", "chest_acc_z", "ecg_lead1", "ecg_lead2", "ankle_acc_x", "ankle_acc_y", "ankle_acc_z", "ankle_gyro_x", "ankle_gyro_y", "ankle_gyro_z", "ankle_mag_x", "ankle_mag_y", "ankle_mag_z", "arm_acc_x", "arm_acc_y", "arm_acc_z", "arm_gyro_x", "arm_gyro_y", "arm_gyro_z", "arm_mag_x", "arm_mag_y", "arm_mag_z"],
+    "timestamp_format": "unix"
+  },
+  "notes": ""
+}

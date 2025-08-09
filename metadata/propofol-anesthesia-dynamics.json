@@ -1,0 +1,15 @@
+{
+  "name": "propofol-anesthesia-dynamics",
+  "website": "https://physionet.org/content/propofol-anesthesia-dynamics/1.0/",
+  "format": "csv",
+  "loader":"PropofolLoader",
+  "record_count": 9,
+  "type": "csv",
+  "entry_point": "./Data",
+  "example_case": "S9",
+  "structure": {
+    "sensor_features": ["eda_tonic", "mu_amp", "sigma_amp", "events", "muHR", "sigmaHR", "HF", "muPR", "sigmaPR", "HFnu", "muRR", "sigmaRR", "LF", "pow_tot", "t_EDA_tonic", "LFnu", "ratio", "LOC", "ROC", "t_EDA", "t_HRV"],
+    "timestamp_format": "unix"
+  },
+  "notes": "Continuous electrocardiogram (ECG) and EDA"
+}

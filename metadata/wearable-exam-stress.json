@@ -1,0 +1,15 @@
+{
+  "name": "wearable-exam-stress",
+  "website": "https://physionet.org/content/wearable-exam-stress/1.0.0/",
+  "format": "csv",
+  "loader":"EmpaticaE4Loader",
+  "record_count": 10,
+  "type": "e4",
+  "entry_point": "./data",
+  "example_case": "S10/midterm_2",
+  "structure": {
+    "sensor_features": ["IBI", "ACC_x", "ACC_y", "ACC_z", "BVP", "EDA", "TEMP", "HR"],
+    "timestamp_format": "unix"
+  },
+  "notes": "Empatica E4 : electrodermal activity, heart rate, blood volume pulse, skin surface temperature, inter beat interval and accelerometer data"
+}

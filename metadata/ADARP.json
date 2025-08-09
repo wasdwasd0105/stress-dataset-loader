@@ -1,0 +1,15 @@
+{
+  "name": "ADARP",
+  "website": "https://zenodo.org/records/6640290",
+  "format": "csv",
+  "loader":"EmpaticaE4Loader",
+  "record_count": 11,
+  "type": "e4",
+  "entry_point": "./",
+  "example_case": "Part 112C/A01d53_200210-194142",
+  "structure": {
+    "sensor_features": ["IBI", "ACC_x", "ACC_y", "ACC_z", "BVP", "EDA", "TEMP", "HR"],
+    "timestamp_format": "unix"
+  },
+  "notes": "Empatica E4 with stress/anxiety flags"
+}

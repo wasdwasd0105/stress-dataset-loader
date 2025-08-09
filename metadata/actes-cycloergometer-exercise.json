@@ -1,0 +1,15 @@
+{
+  "name": "actes-cycloergometer-exercise",
+  "website": "https://physionet.org/content/actes-cycloergometer-exercise/1.0.0/",
+  "loader":"CardioRespiratoryLoader",
+  "format": "csv",
+  "record_count": 18,
+  "type": "csv",
+  "entry_point": "./",
+  "example_case": "15",
+  "structure": {
+    "sensor_features": ["RR", "VO2", "power"],
+    "timestamp_format": "unix"
+  },
+  "notes": "ECG recordings, exercise test context"
+}

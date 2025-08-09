@@ -1,0 +1,15 @@
+{
+  "name": "EmoPairCompete",
+  "website": "https://github.com/DTUComputeStatisticsAndDataAnalysis/EmoPairCompete/tree/main",
+  "format": "csv",
+  "loader":"EmpaticaE4Loader",
+  "record_count": 28,
+  "type": "e4",
+  "entry_point": "./",
+  "example_case": "D1_1/ID_8/round_4/phase1",
+  "structure": {
+    "sensor_features": ["BVP", "EDA", "TEMP", "HR"],
+    "timestamp_format": "unix"
+  },
+  "notes": "empatica E4 with experiment context"
+}

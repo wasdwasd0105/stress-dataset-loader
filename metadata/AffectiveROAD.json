@@ -1,0 +1,15 @@
+{
+  "name": "AffectiveROAD",
+  "website": "https://www.media.mit.edu/tools/affectiveroad/",
+  "format": "csv",
+  "loader":"EmpaticaE4Loader",
+  "record_count": 10,
+  "type": "e4",
+  "entry_point": "./Database/E4",
+  "example_case": "13-E4-Drv13/Right.zip",
+  "structure": {
+    "sensor_features": ["IBI", "ACC_x", "ACC_y", "ACC_z", "BVP", "EDA", "TEMP", "HR"],
+    "timestamp_format": "unix"
+  },
+  "notes": "empatica E4 with observer-reported stress."
+}

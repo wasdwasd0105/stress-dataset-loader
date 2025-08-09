@@ -1,0 +1,15 @@
+{
+  "name": "wearable-device-dataset",
+  "website": "https://physionet.org/content/wearable-device-dataset/1.0.0/",
+  "format": "csv",
+  "loader":"EmpaticaE4Loader",
+  "record_count": 36,
+  "type": "e4",
+  "entry_point": "./Wearable_Dataset",
+  "example_case": "STRESS/S18",
+  "structure": {
+    "sensor_features": ["ACC_x", "ACC_y", "ACC_z", "EDA", "HR", "TEMP", "IBI"],
+    "timestamp_format": "unix"
+  },
+  "notes": "Empatica E4 structure"
+}

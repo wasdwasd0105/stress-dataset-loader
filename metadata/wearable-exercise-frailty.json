@@ -1,0 +1,15 @@
+{
+  "name": "wearable-exercise-frailty",
+  "website": "https://physionet.org/content/wearable-exercise-frailty/1.0.0/",
+  "loader":"WFDBLoader",
+  "format": "wfdb",
+  "record_count": 80,
+  "type": "wfdb",
+  "entry_point": "./",
+  "example_case": "ecg/307_1_ecg",
+  "structure": {
+    "sensor_features": ["ECG"],
+    "timestamp_format": "wfdb_time"
+  },
+  "notes": "wearable including accelerometry and ECG, with exercise test annotations"
+}

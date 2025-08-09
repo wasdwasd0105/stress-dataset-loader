@@ -1,0 +1,15 @@
+{
+  "name": "nstdb",
+  "website": "https://physionet.org/content/nstdb/1.0.0/",
+  "loader":"WFDBLoader",
+  "format": "wfdb",
+  "record_count": 15,
+  "type": "wfdb",
+  "entry_point": "./",
+  "example_case": "118e18",
+  "structure": {
+    "sensor_features": ["MLII", "V1"],
+    "timestamp_format": "wfdb_time"
+  },
+  "notes": "ECG, with noise annotations"
+}

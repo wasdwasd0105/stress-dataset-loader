@@ -1,0 +1,30 @@
+{
+  "name": "wrist",
+  "website": "https://physionet.org/content/wrist/1.0.0/",
+  "loader":"WFDBLoader",
+  "format": "wfdb",
+  "record_count": 8,
+  "type": "wfdb",
+  "entry_point": "./",
+  "example_case": "s8_walk",
+  "structure": {
+    "sensor_features": [
+      "chest_ecg",
+      "wrist_ppg",
+      "wrist_gyro_x",
+      "wrist_gyro_y",
+      "wrist_gyro_z",
+      "wrist_low_noise_accelerometer_x",
+      "wrist_low_noise_accelerometer_y",
+      "wrist_low_noise_accelerometer_z",
+      "wrist_wide_range_accelerometer_x",
+      "wrist_wide_range_accelerometer_y",
+      "wrist_wide_range_accelerometer_z",
+      "wrist_mag_x",
+      "wrist_mag_y",
+      "wrist_mag_z",
+      "sample_times_for_all_signals_apart_from_ecg"],
+    "timestamp_format": "wfdb_time"
+  },
+  "notes": "PPG, motion, and ECG"
+}
