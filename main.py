@@ -99,25 +99,85 @@ def init_loader(loader_name: str, data_path: str, case: str):
 
 def main(argv: List[str] | None = None):
     p = argparse.ArgumentParser(
-        description="Dataset entry point: pick dataset, case, loader, and plot features."
+        description="Load biosignal datasets by name, inspect metadata or a case, and plot features.",
+        formatter_class=argparse.RawTextHelpFormatter,
+        epilog=(
+            "Examples:\n"
+            "  # List all available datasets (from ./metadata/*.json)\n"
+            "  python main.py -dataset\n\n"
+            "  # Show metadata summary for a dataset\n"
+            "  python main.py -dataset autonomic-aging-cardiovascular\n\n"
+            "  # Print summary for the example case from metadata (uses datasets_lite/)\n"
+            "  python main.py -dataset autonomic-aging-cardiovascular -example-case\n\n"
+            "  # Print summary for a specific case (uses datasets/)\n"
+            "  python main.py -dataset autonomic-aging-cardiovascular -case 1121\n\n"
+            "  # Plot specific features for a case\n"
+            "  python main.py -dataset autonomic-aging-cardiovascular -case 1121 -plot ECG,RESP\n\n"
+            "  # Plot all features for a case\n"
+            "  python main.py -dataset autonomic-aging-cardiovascular -case 1121 -plot-all\n"
+        ),
     )
-    p.add_argument("-dataset", required=True, help="Dataset name (metadata JSON at ./metadata/<name>.json)")
+    p.add_argument(
+        "-dataset",
+        nargs="?",
+        const="__LIST__",
+        required=False,
+        help=(
+            "Dataset name (metadata JSON at ./metadata/<name>.json).\n"
+            "  - Use '-dataset' with no value to list available datasets.\n"
+            "  - Use '-dataset <name>' alone to print that dataset's metadata summary."
+        ),
+    )
     group = p.add_mutually_exclusive_group(required=False)
-    group.add_argument("-case", help="Case identifier (record/subject/file/etc. per dataset)")
-    group.add_argument("-example-case", action="store_true",
-                       help="Use metadata['example_case'] and load from dataset_lite folder")
-    p.add_argument("-plot", help="Comma-separated feature list to plot, e.g. -plot ECG,ABP")
-    p.add_argument("-plot-all", dest="plot_all", action="store_true", help="Plot all features using the loader's plot_all()")
+    group.add_argument(
+        "-case",
+        help="Case identifier for the selected dataset (loads from ./datasets/)",
+    )
+    group.add_argument(
+        "-example-case",
+        action="store_true",
+        help="Use metadata['example_case'] and load from ./datasets_lite/",
+    )
+    p.add_argument(
+        "-plot",
+        help="Comma-separated feature list to plot (e.g., '-plot ECG,ABP'). Requires -case or -example-case.",
+    )
+    p.add_argument(
+        "-plot-all",
+        dest="plot_all",
+        action="store_true",
+        help="Plot all available features for the selected case. Requires -case or -example-case.",
+    )
+
+    # If no arguments at all, show help and exit
+    if argv is None and len(sys.argv) == 1:
+        p.print_help()
+        return 0
 
     args = p.parse_args(argv)
 
+    # If only -dataset is provided (no -case, no -example-case, no -plot), or if -dataset is provided with no value, list available datasets
+    if (args.dataset in (None, "__LIST__")) and (args.case is None) and (not args.example_case) and (args.plot is None) and (not getattr(args, "plot_all", False)):
+        print("=== Available Datasets ===")
+        try:
+            files = os.listdir(METADATA_DIR)
+        except FileNotFoundError:
+            files = []
+        datasets = sorted(f[:-5] for f in files if f.endswith(".json"))
+        for ds in datasets:
+            print(ds)
+        return 0
+
+    if args.dataset in (None, "__LIST__"):
+        # Already handled listing above; if we reach here with a missing dataset but other flags provided, error out.
+        die("Please provide a dataset name after -dataset, or run '-dataset' alone to list available datasets.")
     meta = load_json_metadata(args.dataset)
 
-    # If only -dataset is provided (no -case, no -example-case, no -plot), pretty-print meta and exit
-    if args.case is None and not args.example_case and args.plot is None:
+    # Print metadata summary if only -dataset is provided, no case/example-case/plot flags
+    if args.case is None and not args.example_case and args.plot is None and not getattr(args, "plot_all", False):
         print("=== Dataset Metadata Summary ===")
         print(f"Name           : {meta.get('name', 'N/A')}")
-        #print(f"Description    : {meta.get('notes', 'N/A')}")
+        print(f"Description    : {meta.get('notes', 'N/A')}")
         print(f"Data Loader    : {meta.get('loader', 'N/A')}")
         print(f"Record Count   : {meta.get('record_count', 'N/A')}")
         print(f"Format         : {meta.get('format', 'N/A')}")

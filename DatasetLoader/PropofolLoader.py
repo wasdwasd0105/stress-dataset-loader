@@ -249,6 +249,6 @@ class PropofolLoader:
         #     self.plot(f, max_points=max_points)
 
 
-loader = PropofolLoader("S9", path="../datasets_lite/propofol-anesthesia-dynamics/Data")
-loader.print_summary()
-loader.plot(["sigmaHR", "muHR"])
+# loader = PropofolLoader("S9", path="../datasets_lite/propofol-anesthesia-dynamics/Data")
+# loader.print_summary()
+# loader.plot(["sigmaHR", "muHR"])
