@@ -26,7 +26,7 @@ LOADER_CLASSES = {
     "CardioRespiratoryLoader": CardioRespiratoryLoader,
 }
 
-DATASET_DIR = "datasets"
+DATASET_DIR = "xxxx"
 DATASET_LITE_DIR = "datasets_lite"
 METADATA_DIR = "metadata"
 LOADERS_DIR = "DatasetLoader"

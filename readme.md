@@ -20,13 +20,28 @@ A flexible Python tool for loading, exploring, and plotting various stress-relat
 
 
 
-## Usage
+## Usage For DatasetLoaderUI (Jupyter Dataset Loader UI)
 
-Run main.py with the following options:
+provide a Jupyter UI for for exploring, loading, and visualizing various biosignals.
+
+**usage:**  
+
+1. Open the notebook in VScode.
+2. Run all cells.
+3. Select a dataset from the dropdown.
+4. Choose an example case or enter a manual case ID.
+5. Select one feature, or enable "Plot all features".
+6. Click Plot to visualize the signals.
+
+
+
+## Usage For DatasetLoaderCli (Dataset Loader Command-Line Interface)
+
+Run DatasetLoaderCli.py with the following options:
 
 **usage:**  
 ```bash
-main.py [-h] [-dataset [DATASET]] [-case CASE | -example-case] [-plot PLOT] [-plot-all]
+DatasetLoaderCli.py [-h] [-dataset [DATASET]] [-case CASE | -example-case] [-plot PLOT] [-plot-all]
 ```
 
 Flexible Dataset Loader: pick dataset, case, loader, and plot features.
@@ -44,21 +59,19 @@ Flexible Dataset Loader: pick dataset, case, loader, and plot features.
 -plot-all             Plot all available features.
 ```
 
-
-
-## Examples
+### Examples
 1.	List available datasets:
 
-    python main.py -dataset
+    python DatasetLoaderCli.py -dataset
 
 2.	Show metadata for a dataset:
     
-    python main.py -dataset autonomic-aging-cardiovascular
+    python DatasetLoaderCli.py -dataset autonomic-aging-cardiovascular
 
 3.	Load an example case and plot all features:
 
-    python main.py -dataset autonomic-aging-cardiovascular -example-case -plot-all
+    python DatasetLoaderCli.py -dataset autonomic-aging-cardiovascular -example-case -plot-all
 
 4.	Load a specific case and plot selected features:
 
-    python ./main.py -dataset ADARP -example-case -plot EDA,HR
+    python ./DatasetLoaderCli.py -dataset ADARP -example-case -plot EDA,HR
