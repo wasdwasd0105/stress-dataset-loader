@@ -16,22 +16,6 @@ from DatasetLoader.PropofolLoader import PropofolLoader
 from DatasetLoader.MHealthLoader import MHealthLoader
 from DatasetLoader.CardioRespiratoryLoader import CardioRespiratoryLoader
 
-import pandas as pd
-import numpy as np
-from FeatureExtraction.feature_engineering_and_extraction_bridge import (
-    print_summarize as feae_print_summarize,
-    export_json_result as feae_export_json_result,
-    output_json_structure as feae_output_json_structure,
-)
-from FeatureExtraction.Heart_Rate_Variability_bridge import (
-    export_json_result as hrv_export_json_result,
-    output_json_structure as hrv_output_json_structure,
-)
-from FeatureExtraction.wearablecompute_bridge import (
-    export_json_result as wc_export_json_result,
-    output_json_structure as wc_output_json_structure,
-)
-
 
 LOADER_CLASSES = {
     "WFDBLoader": WFDBLoader,
@@ -164,33 +148,6 @@ def main(argv: List[str] | None = None):
         action="store_true",
         help="Plot all available features for the selected case. Requires -case or -example-case.",
     )
-    p.add_argument(
-        "-stats",
-        action="store_true",
-        help="Compute statistical summary (mean, median, mode, range, std, skewness, kurtosis) for columns."
-    )
-    p.add_argument(
-        "-stats-cols",
-        dest="stats_cols",
-        help="Comma-separated columns to summarize; defaults to all numeric columns."
-    )
-    p.add_argument(
-        "-stats-json",
-        dest="stats_json",
-        action="store_true",
-        help="Print JSON with extracted features per column (numeric columns or -stats-cols)."
-    )
-    p.add_argument(
-        "-feature-extration",
-        dest="feature_extration",
-        choices=["feature_engineering_and_extraction", "Heart_Rate_Variability", "wearablecompute"],
-        default="feature_engineering_and_extraction",
-        help=(
-            "Select which feature bridge to use for -stats / -stats-json. Default: feature_engineering_and_extraction. "
-            "For Heart_Rate_Variability, the DataFrame will be coerced to ['time','IBI'] if needed (e.g., ECG/PPG RR/IBI columns). "
-            "For wearablecompute, columns (IBI/RR, EDA, HR/ACC/time) are inferred when possible."
-        ),
-    )
 
     # If no arguments at all, show help and exit
     if argv is None and len(sys.argv) == 1:
@@ -230,14 +187,7 @@ def main(argv: List[str] | None = None):
             print(f"Dataset Features: {', '.join(structure['sensor_features'])}")
         else:
             print("Dataset Features: N/A")
-        try:
-            feae_modules = feae_output_json_structure()
-            hrv_modules = hrv_output_json_structure()
-            wc_modules = wc_output_json_structure()
-            print(f"Available feature modules: FEAE={list(feae_modules.keys())}, HRV={list(hrv_modules.keys())}, WEARABLE={list(wc_modules.keys())}")
-            return 0
-        except Exception:
-            pass
+        return 0
 
     loader_name = meta.get("loader")
     if not loader_name:
@@ -262,7 +212,7 @@ def main(argv: List[str] | None = None):
     print(f"Data   : {data_path}")
 
     # If a case or example_case was provided but no plotting flags, load and print summary then exit
-    if (args.case or args.example_case) and not (args.plot or getattr(args, "plot_all", False) or getattr(args, "stats", False) or getattr(args, "stats_json", False)):
+    if (args.case or args.example_case) and not (args.plot or getattr(args, "plot_all", False)):
         loader = init_loader(loader_name, data_path, case)
         if hasattr(loader, "print_summary"):
             loader.print_summary()
@@ -274,52 +224,6 @@ def main(argv: List[str] | None = None):
     # Print summary if available
     if hasattr(loader, "print_summary"):
         loader.print_summary()
-
-    # Statistical summaries via bridge
-    if getattr(args, "stats", False) or getattr(args, "stats_json", False):
-        if not hasattr(loader, "to_dataframe"):
-            die(f"Loader '{loader_name}' does not implement to_dataframe().")
-        try:
-            df = loader.to_dataframe()
-        except Exception as e:
-            die(f"Failed to load DataFrame from loader '{loader_name}': {e}")
-
-        numeric_cols = df.select_dtypes(include=[np.number]).columns.tolist()
-
-        # Decide columns for feature_engineering_and_extraction (numeric summary)
-        if getattr(args, "stats_cols", None):
-            cols = [c.strip() for c in args.stats_cols.split(",") if c.strip()]
-        else:
-            cols = numeric_cols
-        missing = [c for c in cols if c not in df.columns]
-        if missing:
-            print(f"[WARN] These columns were not found and will be skipped: {', '.join(missing)}")
-        cols = [c for c in cols if c in df.columns]
-        df_sel = df[cols] if cols else df.iloc[[], :]
-
-        if getattr(args, "stats", False):
-            if args.feature_extration == "feature_engineering_and_extraction":
-                print("=== Statistical Feature Summary ===")
-                feae_print_summarize(df_sel)
-            else:
-                print("[INFO] -stats textual summary is not applicable for this feature module. Use -stats-json to get metrics.")
-
-        if getattr(args, "stats_json", False):
-            try:
-                if args.feature_extration == "feature_engineering_and_extraction":
-                    raw_json = feae_export_json_result(df_sel)
-                elif args.feature_extration == "Heart_Rate_Variability":
-                    # Use selected columns when provided; else pass full df (HRV bridge coerces to ['time','IBI']).
-                    df_for_hrv = df_sel if (getattr(args, "stats_cols", None)) else df
-                    raw_json = hrv_export_json_result(df_for_hrv)
-                else:  # wearablecompute
-                    # Use selected columns if specified; else full df.
-                    df_for_wc = df_sel if (getattr(args, "stats_cols", None)) else df
-                    raw_json = wc_export_json_result(df_for_wc)
-                parsed = json.loads(raw_json)
-                print(json.dumps(parsed, indent=2, ensure_ascii=False))
-            except Exception as e:
-                die(f"Failed to export JSON stats: {e}")
 
     # Plotting
     if getattr(args, "plot_all", False):

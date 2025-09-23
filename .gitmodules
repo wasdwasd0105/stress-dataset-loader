@@ -1,3 +1,9 @@
 [submodule "FeatureExtraction/providers/feature_engineering_and_extraction"]
 	path = FeatureExtraction/providers/feature_engineering_and_extraction
 	url = https://github.com/DigitalBiomarkerDiscoveryPipeline/feature-engineering-and-extraction.git
+[submodule "FeatureExtraction/providers/Heart_Rate_Variability"]
+	path = FeatureExtraction/providers/Heart_Rate_Variability
+	url = https://github.com/DigitalBiomarkerDiscoveryPipeline/Heart-Rate-Variability.git
+[submodule "FeatureExtraction/providers/wearablecompute"]
+	path = FeatureExtraction/providers/wearablecompute
+	url = https://github.com/DigitalBiomarkerDiscoveryPipeline/wearablecompute.git
