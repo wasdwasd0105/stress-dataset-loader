@@ -181,8 +181,8 @@ def main(argv: List[str] | None = None):
         help="Print JSON with extracted features per column (numeric columns or -stats-cols)."
     )
     p.add_argument(
-        "-feature-extration",
-        dest="feature_extration",
+        "-feature-extraction",
+        dest="feature_extraction",
         choices=["feature_engineering_and_extraction", "Heart_Rate_Variability", "wearablecompute"],
         default="feature_engineering_and_extraction",
         help=(
@@ -298,7 +298,7 @@ def main(argv: List[str] | None = None):
         df_sel = df[cols] if cols else df.iloc[[], :]
 
         if getattr(args, "stats", False):
-            if args.feature_extration == "feature_engineering_and_extraction":
+            if args.feature_extraction == "feature_engineering_and_extraction":
                 print("=== Statistical Feature Summary ===")
                 feae_print_summarize(df_sel)
             else:
@@ -306,9 +306,9 @@ def main(argv: List[str] | None = None):
 
         if getattr(args, "stats_json", False):
             try:
-                if args.feature_extration == "feature_engineering_and_extraction":
+                if args.feature_extraction == "feature_engineering_and_extraction":
                     raw_json = feae_export_json_result(df_sel)
-                elif args.feature_extration == "Heart_Rate_Variability":
+                elif args.feature_extraction == "Heart_Rate_Variability":
                     # Use selected columns when provided; else pass full df (HRV bridge coerces to ['time','IBI']).
                     df_for_hrv = df_sel if (getattr(args, "stats_cols", None)) else df
                     raw_json = hrv_export_json_result(df_for_hrv)

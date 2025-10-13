@@ -100,7 +100,7 @@ as a unified API across providers:
 
 The main CLI (`DatasetLoaderCli.py`) integrates the bridge. You can use:
 
-- `-feature-extration` → specify choose the feature extraction provider
+- `-feature-extraction` → specify choose the feature extraction provider
 - `-stats` → prints human-readable summaries  
 - `-stats-json` → prints structured JSON with features  
 - `-stats-cols` → specify which columns to summarize
@@ -108,7 +108,7 @@ The main CLI (`DatasetLoaderCli.py`) integrates the bridge. You can use:
 
 Example:
 ```bash
-(base) wasdwasd0105@Mac stress-dataset-loader % python DatasetLoaderCli.py -dataset ADARP -example-case -feature-extration Heart_Rate_Variability -stats-json -stats-cols HR
+(base) wasdwasd0105@Mac stress-dataset-loader % python DatasetLoaderCli.py -dataset ADARP -example-case -feature-extraction Heart_Rate_Variability -stats-json -stats-cols HR
 Dataset: ADARP
 Loader : EmpaticaE4Loader
 Case   : Part 112C/A01d53_200210-194142
