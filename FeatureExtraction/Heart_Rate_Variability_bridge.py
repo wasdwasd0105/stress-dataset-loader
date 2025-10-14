@@ -245,12 +245,15 @@ def export_json_result(
 
         metrics = {k: _clean(v) for k, v in metrics.items()}
 
+        input_name = _guess_ibi_col(data) or "IBI"
         result = {
-            "provider": {
-                "name": "Heart_Rate_Variability",
-                "modules": {
-                    "BIL_HRV": {
-                        "features": metrics
+            input_name: {
+                "provider": {
+                    "name": "Heart_Rate_Variability",
+                    "modules": {
+                        "BIL_HRV": {
+                            "features": metrics
+                        }
                     }
                 }
             }

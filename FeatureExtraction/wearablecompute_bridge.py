@@ -304,10 +304,13 @@ def export_json_result(
 
     # Sanitize metrics for JSON (no NaN/Inf)
     feats = {k: _clean_float(v) for k, v in feats.items()}
+    input_name = ibi_col if ibi_col is not None else ""
     result = {
-        "provider": {
-            "name": "wearablecompute",
-            "modules": {"wearablecompute": {"features": feats}}
+        input_name: {
+            "provider": {
+                "name": "wearablecompute",
+                "modules": {"wearablecompute": {"features": feats}}
+            }
         }
     }
     return json.dumps(result, ensure_ascii=False)

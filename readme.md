@@ -2,7 +2,7 @@
 
 A flexible Python tool for loading, exploring, and plotting various stress-related and physiological datasets.
 
-## Features
+## Dataset Loader Features
 
 - **Multiple dataset formats** via loaders:
   - `WFDBLoader`
@@ -17,7 +17,6 @@ A flexible Python tool for loading, exploring, and plotting various stress-relat
   - Loading specific cases
   - Plotting selected features or all features
 - **Metadata-driven loading** via `./metadata/<dataset>.json`
-
 
 
 ## Usage For DatasetLoaderUI (Jupyter Dataset Loader UI)
@@ -77,8 +76,21 @@ Flexible Dataset Loader: pick dataset, case, loader, and plot features.
     python ./DatasetLoaderCli.py -dataset ADARP -example-case -plot EDA,HR
 
 
+## Feature Extraction
 
-## Dataset Sources & Citations
+The **Feature Extraction** module provides a unified bridge to multiple biosignal feature extraction providers from DBDP.  
+It standardizes output into structured JSON and supports interoperability across datasets and tools.
+
+Available DBDP Feature Extraction modules include:
+- **Heart_Rate_Variability**
+- **feature_engineering_and_extraction**
+- **wearablecompute**
+
+See the [Feature Extraction README](./FeatureExtraction/readme.md) for detailed usage and examples.
+
+## Sources & Citations
+
+**Datasets:**
 
 - **autonomic-aging-cardiovascular**
   - Schumann, A., & Bär, K. (2021). Autonomic Aging: A dataset to quantify changes of cardiovascular autonomic function during healthy aging (version 1.0.0). PhysioNet. RRID:SCR_007345. https://doi.org/10.13026/2hsy-t491
@@ -128,3 +140,13 @@ Flexible Dataset Loader: pick dataset, case, loader, and plot features.
 - **mhealth-dataset**
   - Banos, O., Garcia, R., & Saez, A. (2014). MHEALTH [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5TW22.
 
+
+**Feature Extraction:**
+   - Heart Rate Variability
+ https://github.com/DigitalBiomarkerDiscoveryPipeline/Heart-Rate-Variability/
+
+   - Feature Engineering and Extraction
+ https://github.com/DigitalBiomarkerDiscoveryPipeline/feature-engineering-and-extraction
+
+  - wearablecompute
+https://github.com/DigitalBiomarkerDiscoveryPipeline/wearablecompute/
