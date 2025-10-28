@@ -88,6 +88,26 @@ Available DBDP Feature Extraction modules include:
 
 See the [Feature Extraction README](./FeatureExtraction/readme.md) for detailed usage and examples.
 
+## UI screenshots
+
+**preprocessing**
+
+<p align="center">
+<img alt="preprocessing" src="pics/ui-preprocessing.png" width="300">
+</p>
+
+**plotting**
+
+<p align="center">
+<img alt="plot" src="pics/ui-plot.png" width="300">
+</p>
+
+**feature extraction**
+
+<p align="center">
+<img alt="feature extractions" src="pics/ui-feature-extraction.png" width="300">
+</p>
+
 ## Sources & Citations
 
 **Datasets:**

@@ -1,0 +1,39 @@
+{
+  "name": "wearable-exam-stress",
+  "loader": "EmpaticaE4Loader",
+  "example_case": "S10/midterm_2",
+  "structure": {
+    "sensor_features": ["IBI", "ACC", "BVP", "EDA", "TEMP", "HR"],
+    "timestamp_format": "unix"
+  }
+}
+
+
+
+{
+  "IBI": {
+    "provider": {
+      "name": "feature_engineering_and_extraction",
+      "modules": {
+        "statistical_features": {
+          "features": {
+            "mean": 0.6753080768817203,
+            "median": 0.687531,
+            "std": 0.08411959355869221,
+            "range": 0.750035,
+            "mode": 0.687531,
+            "skewness": -1.0596175403729309,
+            "kurtosis": 3.0874125851748317
+          }
+        },
+        "time_domain_features": {
+          "features": {
+            "rms": 0.6805270786105188,
+            "energy": 861.3978147832311,
+            "average_power": 0.4631171047221672
+          }
+        }
+      }
+    }
+  }
+}

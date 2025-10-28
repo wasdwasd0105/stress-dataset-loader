@@ -75,11 +75,11 @@ class EmpaticaE4Loader:
         if "start" in self.metadata and "end" in self.metadata:
             print(f"Start: {self.metadata['start']}")
             print(f"End:   {self.metadata['end']}")
-        if "fs_estimate" in self.metadata:
-            print("Sampling rate estimates (Hz):")
-            for k, v in sorted(self.metadata["fs_estimate"].items()):
-                if v is not None:
-                    print(f"  {k}: {v:.6g}")
+        # if "fs_estimate" in self.metadata:
+        #     print("Sampling rate estimates (Hz):")
+        #     for k, v in sorted(self.metadata["fs_estimate"].items()):
+        #         if v is not None:
+        #             print(f"  {k}: {v:.6g}")
 
     def plot(
         self,

@@ -127,7 +127,7 @@ Sampling rate estimates (Hz):
   IBI: 1.42216
   TEMP: 4
 {
-  "provider": {
+  "IBI": {
     "name": "Heart_Rate_Variability",
     "modules": {
       "BIL_HRV": {
@@ -158,6 +158,3 @@ Sampling rate estimates (Hz):
 [INFO] No plotting requested.
 (base) wasdwasd0105@Mac stress-dataset-loader % 
 ```
-
-
-## UI coming soon
