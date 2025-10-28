@@ -93,19 +93,19 @@ See the [Feature Extraction README](./FeatureExtraction/readme.md) for detailed 
 **preprocessing**
 
 <p align="center">
-<img alt="preprocessing" src="pics/ui-preprocessing.png" width="300">
+<img alt="preprocessing" src="pics/ui-preprocessing.png" width="600">
 </p>
 
 **plotting**
 
 <p align="center">
-<img alt="plot" src="pics/ui-plot.png" width="300">
+<img alt="plot" src="pics/ui-plot.png" width="600">
 </p>
 
 **feature extraction**
 
 <p align="center">
-<img alt="feature extractions" src="pics/ui-feature-extraction.png" width="300">
+<img alt="feature extractions" src="pics/ui-feature-extraction.png" width="600">
 </p>
 
 ## Sources & Citations
