@@ -40,7 +40,7 @@ Run DatasetLoaderCli.py with the following options:
 
 **usage:**  
 ```bash
-DatasetLoaderCli.py [-h] [-dataset [DATASET]] [-case CASE | -example-case] [-plot PLOT] [-plot-all]
+python DatasetLoaderCli.py [-h] [-dataset [DATASET]] [-case CASE | -example-case] [-plot PLOT] [-plot-all]
 ```
 
 Flexible Dataset Loader: pick dataset, case, loader, and plot features.
